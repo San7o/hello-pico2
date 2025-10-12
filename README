@@ -17,6 +17,10 @@ Pi Pico2 Datasheet (for the GPIO voltage):
 
    https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf
 
+Pico SDK:
+
+   https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-c-sdk.pdf
+
 Pico 2 Examples:
 
   https://github.com/raspberrypi/pico-examples
