@@ -1,0 +1,25 @@
+hello-pico2
+===========
+
+Project to get started with the Raspberry Pi Pico2.
+
+Building
+--------
+
+Use `cmake -Bbuild && cmake --build build`
+
+
+Resources
+=========
+
+Pi Pico2 Datasheet (for the GPIO voltage):
+
+   https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf
+
+Pico 2 Examples:
+
+  https://github.com/raspberrypi/pico-examples
+
+Kit Guide:
+
+   https://docs.freenove.com/projects/fnk0058/en/latest/index.html

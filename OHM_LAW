@@ -1,0 +1,30 @@
+Ohm's Law
+=========
+
+R = (V_supply - V_led) / I
+
+- R: resistor value in ohms
+- V_supply: voltage from the GPIO (3.3V on pico2)
+- V_led: forward voltage of the LED
+  This is the minimum voltage required for the LED to conduct current and
+  emit light. Different for every color, you should check the specs of your LED.
+
+  Some standard values:
+
+     red        1.8V-2.1V
+     amber      2V-2.2V
+     orange     1.9V-2.2V
+     yellow     1.9V-2.2V
+     green      2V-3.1V
+     blue       3V-3.7V
+     white      3V-3.4V
+     inftared   1.7V
+     others     2.5V
+
+- I: desired current in amperes. You should check the specs of your LED.
+  Standard values for LEDs are from 10-20mA, depending on how bright you want
+  the LED to be.
+
+Intuitively: Voltage pushes, resistance resists, current flows.
+
+If unsure, choose something a bit larger. For red LED, 130-150 Ohm is fine.
