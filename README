@@ -3,6 +3,7 @@ hello-pico2
 
 Project to get started with the Raspberry Pi Pico2.
 
+
 Building
 --------
 
@@ -10,7 +11,7 @@ Use `cmake -Bbuild && cmake --build build`
 
 
 Resources
-=========
+---------
 
 Pi Pico2 Datasheet (for the GPIO voltage):
 
