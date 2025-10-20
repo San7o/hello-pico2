@@ -4,16 +4,17 @@
 
 set -e
 
-#PROGRAM=hello_led_external
 #PROGRAM=hello_led
-PROGRAM=hello_led_external
+#PROGRAM=hello_usb
+#PROGRAM=hello_led_external
+PROGRAM=pomodoro_led
 DEVICE=/dev/sdc1
 MOUNT=/mnt/usb
 
 mkdir -p $MOUNT
 mount $DEVICE $MOUNT 
 
-echo Copying...
+echo Copying $PROGRAM into $DEVICE ...
 cp build/$PROGRAM.uf2 $MOUNT
 
 # Wait a little bit

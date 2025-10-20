@@ -2,7 +2,7 @@
 #include "pico/stdlib.h"
 
 #ifndef LED_DELAY_MS
-#define LED_DELAY_MS (200)
+#define LED_DELAY_MS (1000 * 60 * 60)
 #endif
 
 #ifndef PICO_DEFAULT_LED_PIN
@@ -29,12 +29,12 @@ void pico_set_led(bool led_on)
 int main(void)
 {
     pico_led_init();
+    pico_set_led(false);
+    sleep_ms(LED_DELAY_MS);
+    pico_set_led(true);
     while (true)
     {
-        pico_set_led(true);
-        sleep_ms(LED_DELAY_MS);
-        pico_set_led(false);
-        sleep_ms(LED_DELAY_MS);
+        sleep_ms(1000);
     }
     return 0;
 }

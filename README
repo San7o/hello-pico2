@@ -7,8 +7,17 @@ Project to get started with the Raspberry Pi Pico2.
 Building
 --------
 
-Use `cmake -Bbuild && cmake --build build`
 
+To build the program, use `cmake -Bbuild && cmake --build build`. In order to
+load the program, you need to do the following steps.
+
+- plug the Pi to your laptop while holding the button on the Pi, you should
+  see it being detected in dmesg
+- the operating system should have registered the Pi as a device in /dev,
+  check this with `lsblk` and note which device is being used
+- customize the `load.sh` file to use the correct device and load the selected
+  program
+- run `load.sh` with sudo priviledges
 
 Resources
 ---------
