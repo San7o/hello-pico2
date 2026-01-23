@@ -7,7 +7,8 @@ set -e
 #PROGRAM=hello_led
 #PROGRAM=hello_usb
 #PROGRAM=hello_led_external
-PROGRAM=pomodoro_led
+#PROGRAM=pomodoro_led
+PROGRAM=hello_uart
 DEVICE=/dev/sdc1
 MOUNT=/mnt/usb
 

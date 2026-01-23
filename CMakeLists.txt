@@ -12,6 +12,7 @@ pico_sdk_init()
 
 # Subprojects
 include(hello_usb/hello_usb.cmake)
+include(hello_uart/hello_uart.cmake)
 include(hello_led/hello_led.cmake)
 include(hello_led_external/hello_led_external.cmake)
 include(pomodoro_led/pomodoro_led.cmake)
