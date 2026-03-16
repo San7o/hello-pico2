@@ -8,9 +8,21 @@ set -e
 #PROGRAM=hello_usb
 #PROGRAM=hello_led_external
 #PROGRAM=pomodoro_led
-PROGRAM=hello_uart
-DEVICE=/dev/sdc1
+#PROGRAM=hello_uart
+#PROGRAM=hello_lcd
+PROGRAM=hello_ultrasonic_ranging
+DEVICE=/dev/sdq1
 MOUNT=/mnt/usb
+
+if [ "$PROGRAM" = "" ]; then
+    echo "Error, PROGRAM not selected"
+    exit 1
+fi
+
+if [ ! -f build/"$PROGRAM".uf2 ]; then
+    echo "Error, build/$PROGRAM.uf2 not found"
+    exit 1
+fi
 
 mkdir -p $MOUNT
 mount $DEVICE $MOUNT 
