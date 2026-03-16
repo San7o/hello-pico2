@@ -3,15 +3,18 @@
 // Mail:    giovanni.santini@proton.me
 // Github:  @San7o
 
-#include <stdio.h>
-#include <pico/stdlib.h>
-
 //
-// Print something throught the USB
+// Hello usb
+// =========
+//
+// Print something throught the USB. Yes, you can use printf.
 // 
 // Read output in:
 //    sudo cat /dev/ttyACM0
 //
+
+#include <stdio.h>
+#include <pico/stdlib.h>
 
 int main(void)
 {

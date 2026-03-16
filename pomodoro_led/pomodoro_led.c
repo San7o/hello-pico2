@@ -3,15 +3,16 @@
 // Mail:    giovanni.santini@proton.me
 // Github:  @San7o
 
-#include <stdio.h>
-#include "pico/stdlib.h"
-
 //
 // pomodoro_led.c
 // ==============
 //
-// Set a timer, and the Pi's LED will turn on afterwards.
+// Set a timer, and the Pi's LED will turn on when it finishes.
 //
+
+#include <stdio.h>
+#include "pico/stdlib.h"
+
 #ifndef LED_DELAY_MS
 #define LED_DELAY_MS (1000 * 60 * 60)
 #endif

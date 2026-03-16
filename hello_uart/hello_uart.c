@@ -9,7 +9,7 @@
 // hello_uart.c
 // ============
 //
-// Send a string via uart
+// Send a string via uart.
 //
 // Setup
 // -----

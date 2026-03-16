@@ -2,12 +2,17 @@
 
 ![pico-img](./pi-banner.jpg)
 
-Collection of examples for sensors with the Raspberry Pi Pico2.
+Collection of examples on the Raspberry Pi Pico2.
 
-## Building
+## Usage
 
-To build the program, use `cmake -Bbuild && cmake --build build`. In order to
-load the program, you need to do the following steps.
+To build the program, use:
+
+```bash
+cmake -Bbuild && cmake --build build
+```
+
+In order to load the program, you need to do the following steps.
 
 - plug the Pi to your laptop while holding the button on the Pi, you should
   see it being detected in dmesg

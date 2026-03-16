@@ -3,6 +3,15 @@
 // Mail:    giovanni.santini@proton.me
 // Github:  @San7o
 
+//
+// Hello led external
+// ==================
+//
+// Connect and light an external LED. Remember that you need a
+// resistor or you may burn the LED, usually 130-150 Ohm is fine but
+// you can use Ohm's law to calculate the correct amount for your LED.
+//
+
 #include <stdio.h>
 #include <pico/stdlib.h>
 

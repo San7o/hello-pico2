@@ -3,6 +3,14 @@
 // Mail:    giovanni.santini@proton.me
 // Github:  @San7o
 
+//
+// Hello led
+// =========
+//
+// The Raspberry Pi Pico 2 has a built-in LED that we can use. This is
+// probably the simpler program you can run and verify that it worked.
+//
+
 #include <stdio.h>
 #include <pico/stdlib.h>
 
