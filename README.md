@@ -1,12 +1,10 @@
-hello-pico2
-===========
+# hello-pico2
+
+![pico-img](./pi-banner.jpg)
 
 Collection of examples for sensors with the Raspberry Pi Pico2.
 
-
-Building
---------
-
+## Building
 
 To build the program, use `cmake -Bbuild && cmake --build build`. In order to
 load the program, you need to do the following steps.
@@ -19,21 +17,9 @@ load the program, you need to do the following steps.
   program
 - run `load.sh` with sudo priviledges
 
-Resources
----------
+## Resources
 
-Pi Pico2 Datasheet (for the GPIO voltage):
-
-   https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf
-
-Pico SDK:
-
-   https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-c-sdk.pdf
-
-Pico 2 Examples:
-
-  https://github.com/raspberrypi/pico-examples
-
-Kit Guide:
-
-   https://docs.freenove.com/projects/fnk0058/en/latest/index.html
+- [Pi Pico2 Datasheet](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf) (for the GPIO voltage)
+- [Pico SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-c-sdk.pdf)
+- [Pico 2 Examples](https://github.com/raspberrypi/pico-examples)
+- [Kit Guide](https://docs.freenove.com/projects/fnk0058/en/latest/index.html)
