@@ -10,8 +10,9 @@ set -e
 #PROGRAM=pomodoro_led
 #PROGRAM=hello_uart
 #PROGRAM=hello_lcd
-PROGRAM=hello_ultrasonic_ranging
-DEVICE=/dev/sdq1
+#PROGRAM=hello_ultrasonic_ranging
+PROGRAM=hello_buzzer
+DEVICE=/dev/sda1
 MOUNT=/mnt/usb
 
 if [ "$PROGRAM" = "" ]; then
