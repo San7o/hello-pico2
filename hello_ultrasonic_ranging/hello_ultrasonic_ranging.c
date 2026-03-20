@@ -3,6 +3,30 @@
 // Mail:    giovanni.santini@proton.me
 // Github:  @San7o
 
+//
+// Ultrasonic Range Pins
+// ---------------------
+//
+//   VCC   Power supply pin (needs 5V)
+//   Trig  Trigger pin
+//   Echo  Echo pin
+//   GND   Ground
+//
+// Operation
+// ---------
+//
+// To transmit an ultrasonic wave, you output a high-level pulse in
+// `Trig` pin lasting for least 10us. At the same time, the `Echo` pin
+// is pulled up. When the module receives the returned ultrasonic
+// waves from encountering an obstacle, the `Echo` pin will be pulled
+// down. The duration of high level in the Echo pin is the total time
+// of the ultrasonic wave from transmitting to receiving, s=vt/2.
+//
+// You can read the output with:
+//
+//    sudo cat /dev/ttyACM0
+//
+
 #include <stdio.h>
 #include <pico/stdlib.h>
 
@@ -16,6 +40,9 @@
 static volatile uint64_t ping_start_time = 0;
 static volatile float    last_distance_cm = 0.0f;
 
+// This callback is called at rise or fall of the `Echo` pin. It sets
+// the global `delta_time` variable with the time in microseconds
+// between rise and fall.
 void echo_callback(uint gpio, uint32_t event_mask)
 {
   if (event_mask & GPIO_IRQ_EDGE_RISE)
@@ -65,29 +92,6 @@ void send_wave(void)
   gpio_put(TRIGGER_PIN, false);
 }
 
-//
-// Pins
-// ----
-//
-//   VCC   Power supply pin (needs 5V)
-//   Trig  Trigger pin
-//   Echo  Echo pin
-//   GND   Ground
-//
-// Operation
-// ---------
-//
-// To transmit an ultrasonic wave, you output a high-level pulse in
-// `Trig` pin lasting for least 10us. At the same time, the `Echo` pin
-// is pulled up. When the module receives the returned ultrasonic
-// waves from encountering an obstacle, the `Echo` pin will be pulled
-// down. The duration of high level in the Echo pin is the total time
-// of the ultrasonic wave from transmitting to receiving, s=vt/2.
-//
-// You can read the output with:
-//
-//    sudo cat /dev/ttyACM0
-//
 int main(void)
 {
   pico_init();
