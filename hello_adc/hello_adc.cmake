@@ -1,4 +1,4 @@
-# hello_led.cmake
+# hello_adc.cmake
 
 add_executable(hello_adc hello_adc/hello_adc.c)
 

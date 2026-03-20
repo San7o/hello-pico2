@@ -12,8 +12,11 @@ set -e
 #PROGRAM=hello_lcd
 #PROGRAM=hello_ultrasonic_ranging
 #PROGRAM=hello_buzzer
-PROGRAM=hello_adc
-DEVICE=/dev/sdb1
+#PROGRAM=hello_timer
+#PROGRAM=hello_adc
+#PROGRAM=hello_dma
+PROGRAM=oscilloscope
+DEVICE=/dev/sdn1
 MOUNT=/mnt/usb
 
 if [ "$PROGRAM" = "" ]; then
