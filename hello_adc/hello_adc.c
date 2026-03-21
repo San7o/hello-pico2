@@ -15,7 +15,7 @@
 //
 // The conversion formula is as follows:
 //
-//           ADC Value = (Analog Voltage) / 3.3 * 1023
+//           ADC Value = (Analog Voltage) / 3.3 * (1<<12)
 //
 // Raspberry Pi Pico has four ADC channels, which are ADC0(GP26),
 // ADC1(GP27), ADC2(GP28), ADC3(GP29). ADC3 used to measure VSYS on
@@ -60,6 +60,9 @@ int main(void)
   {
     const float conversion_factor = 3.3f / (1 << 12);
     uint16_t result = adc_read();
+    // Note that printing floats is a lot more expendive than printing
+    // integers, therefore you may want to use only integers and make
+    // the conversions on the receiving end of this information.
     printf("Raw value: 0x%03x, voltage: %f V\n",
            result, result * conversion_factor);
     sleep_ms(500);

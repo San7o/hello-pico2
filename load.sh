@@ -15,9 +15,10 @@ set -e
 #PROGRAM=hello_timer
 #PROGRAM=hello_adc
 #PROGRAM=hello_dma
-PROGRAM=hello_servo
+#PROGRAM=hello_servo
 #PROGRAM=oscilloscope
-DEVICE=/dev/sdd1
+PROGRAM=servo_control
+DEVICE=/dev/sdf1
 MOUNT=/mnt/usb
 
 if [ "$PROGRAM" = "" ]; then
