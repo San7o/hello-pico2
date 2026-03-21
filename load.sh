@@ -16,11 +16,10 @@ set -e
 #PROGRAM=hello_adc
 #PROGRAM=hello_dma
 #PROGRAM=hello_servo
-PROGRAM=hello_motor_L293D
+#PROGRAM=hello_motor_L293D
+PROGRAM=hello_MPU6050
 #PROGRAM=oscilloscope
 #PROGRAM=servo_control
-DEVICE=/dev/sdn1
-MOUNT=/mnt/usb
 
 if [ "$PROGRAM" = "" ]; then
     echo "Error, PROGRAM not selected"
@@ -32,16 +31,7 @@ if [ ! -f build/"$PROGRAM".uf2 ]; then
     exit 1
 fi
 
-mkdir -p $MOUNT
-mount $DEVICE $MOUNT 
-
-echo Copying $PROGRAM into $DEVICE ...
-cp build/$PROGRAM.uf2 $MOUNT
-
-# Wait a little bit
-sleep 1
-sync
-sleep 1
+picotool load -x build/"$PROGRAM".uf2
 
 echo Done!
 
