@@ -9,6 +9,9 @@
 //
 // We use I2C to communicate with the module.
 //
+// Info about registers can be found in the "MPU-6000 and MPU-6050
+// Register Map and Descriptions" document
+//
 
 #include <stdio.h>
 #include <string.h>
@@ -16,16 +19,19 @@
 #include <pico/binary_info.h>
 #include <hardware/i2c.h>
 
+// I2C address of the module (which acts as a slave)
 static int addr = 0x68;
 
 #ifdef i2c_default
 
 static void mpu6050_reset()
 {
+  // Two byte reset. First byte register, second byte data
   uint8_t buf[] = {0x6B, 0x80};
   i2c_write_blocking(i2c_default, addr, buf, 2, false);
   sleep_ms(100);
 
+  // Clear sleep mode (0x6B register, 0x00 value)
   buf[1] = 0x00;
   i2c_write_blocking(i2c_default, addr, buf, 2, false);
   sleep_ms(10);
@@ -35,15 +41,18 @@ static void mpu6050_read_raw(uint16_t accel[3], int16_t gyro[3], int16_t *temp)
 {
   uint8_t buffer[6];
 
+  // Start reading acceleration registers from register 0x3B for 6 bytes
+  // The register is auto incrementing on each read
   uint8_t val = 0x3B;
-  i2c_write_blocking(i2c_default, addr, &val, 1, true);
-  i2c_read_blocking(i2c_default, addr, buffer, 6, false);
+  i2c_write_blocking(i2c_default, addr, &val, 1, true); // true to keep master control of bus
+  i2c_read_blocking(i2c_default, addr, buffer, 6, false); // False - finished with bus
 
   for (int i = 0; i < 3; ++i)
   {
     accel[i] = (buffer[i*2] << 8 | buffer[(i * 2) + 1]);
   }
 
+  // Now gyro data from reg 0x43 for 6 bytes
   val = 0x43;
   i2c_write_blocking(i2c_default, addr, &val, 1, true);
   i2c_read_blocking(i2c_default, addr, buffer, 6, false);
@@ -53,6 +62,7 @@ static void mpu6050_read_raw(uint16_t accel[3], int16_t gyro[3], int16_t *temp)
     gyro[i] = (buffer[i * 2] << 8 | buffer[(i * 2) + 1]);
   }
 
+  // Now temperature from reg 0x41 for 2 bytes
   val = 0x41;
   i2c_write_blocking(i2c_default, addr, &val, 1, true);
   i2c_read_blocking(i2c_default, addr, buffer, 2, false);
