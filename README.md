@@ -18,9 +18,19 @@ In order to load the program, you need to do the following steps.
   see it being detected in dmesg
 - the operating system should have registered the Pi as a device in /dev,
   check this with `lsblk` and note which device is being used
-- customize the `load.sh` file to use the correct device and load the selected
-  program
-- run `load.sh` with sudo priviledges
+- run `load.sh` (with sudo priviledges if necessary)
+
+### Reset button hack
+
+Instead uf unplugging and plugging back the USB connection to the Pi,
+you can reboot the board by connecting the RUN pin to ground. To make
+this easier you can add a button that closes that circuit and reboots
+the board. Then the full sequence looks like this:
+
+1. press and hold your new reset button
+2. press and hold the white BOOTSEL button on the Pico2
+3. release the reset button'
+3. release the BOOTSEL button
 
 ## Resources
 
