@@ -18,14 +18,25 @@
 #define BUTTON_3_GPIO_PIN 18
 #define BUTTON_4_GPIO_PIN 19
 
-volatile int last_button_pressed = -1;
+typedef struct ButtonEvent
+{
+  bool pressed;   // true = pressed, false = released
+  uint key;       // 0 to 3
+} ButtonEvent;
+
+// TODO: Add an event buffer
+volatile bool new_event = false;
+volatile ButtonEvent event;
 
 void button_callback(uint gpio, uint32_t event_mask)
 {
   // Clear the interrupt
   gpio_acknowledge_irq(gpio, event_mask);
+
+  event.pressed = event_mask & GPIO_IRQ_EDGE_RISE;
+  event.key     = gpio - BUTTON_1_GPIO_PIN;
+  new_event     = true;
   
-  last_button_pressed = gpio - BUTTON_1_GPIO_PIN;
   return;
 }
 
@@ -35,30 +46,23 @@ void pico_init(void)
 
   gpio_init(LED_PIN);
   gpio_set_dir(LED_PIN, GPIO_OUT);
-  
-  gpio_init(BUTTON_1_GPIO_PIN);
-  gpio_init(BUTTON_2_GPIO_PIN);
-  gpio_init(BUTTON_3_GPIO_PIN);
-  gpio_init(BUTTON_4_GPIO_PIN);
 
-  gpio_set_dir(BUTTON_1_GPIO_PIN, GPIO_IN);
-  gpio_set_dir(BUTTON_2_GPIO_PIN, GPIO_IN);
-  gpio_set_dir(BUTTON_3_GPIO_PIN, GPIO_IN);
-  gpio_set_dir(BUTTON_4_GPIO_PIN, GPIO_IN);
+  uint buttons[] = {
+    BUTTON_1_GPIO_PIN,
+    BUTTON_2_GPIO_PIN,
+    BUTTON_3_GPIO_PIN,
+    BUTTON_4_GPIO_PIN,
+  };
 
-  gpio_pull_up(BUTTON_1_GPIO_PIN);
-  gpio_pull_up(BUTTON_2_GPIO_PIN);
-  gpio_pull_up(BUTTON_3_GPIO_PIN);
-  gpio_pull_up(BUTTON_4_GPIO_PIN);
-  
-  gpio_set_irq_enabled_with_callback(BUTTON_1_GPIO_PIN, GPIO_IRQ_EDGE_FALL,
-                                     true, button_callback);
-  gpio_set_irq_enabled_with_callback(BUTTON_2_GPIO_PIN, GPIO_IRQ_EDGE_FALL,
-                                     true, button_callback);
-  gpio_set_irq_enabled_with_callback(BUTTON_3_GPIO_PIN, GPIO_IRQ_EDGE_FALL,
-                                     true, button_callback);
-  gpio_set_irq_enabled_with_callback(BUTTON_4_GPIO_PIN, GPIO_IRQ_EDGE_FALL,
-                                     true, button_callback);
+  for (int i = 0; i < 4; ++i)
+  {
+    gpio_init(buttons[i]);
+    gpio_set_dir(buttons[i], GPIO_IN);
+    gpio_pull_up(buttons[i]);
+    gpio_set_irq_enabled_with_callback(buttons[i],
+                                       GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE,
+                                     true, button_callback);      
+  }
   
   return;
 }
@@ -69,13 +73,13 @@ int main(void)
   
   while (true)
   {
-    if (last_button_pressed != -1)
+    if (new_event)
     {
-      printf("%d\n", last_button_pressed);
+      printf("%d %d\n", event.key, event.pressed);
       // Use led pin as debug
       gpio_put(LED_PIN, !gpio_get(LED_PIN));
       
-      last_button_pressed = -1;
+      new_event = false;
     }
   }
   return 0;
