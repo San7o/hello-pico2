@@ -3,7 +3,13 @@
 add_executable(oscilloscope oscilloscope/oscilloscope.c)
 
 # pull in common dependencies
-target_link_libraries(oscilloscope pico_stdlib hardware_adc hardware_dma hardware_clocks)
+target_link_libraries(oscilloscope
+  pico_stdlib
+  hardware_adc
+  hardware_dma
+  hardware_clocks
+  hardware_pwm
+)
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(oscilloscope  1)

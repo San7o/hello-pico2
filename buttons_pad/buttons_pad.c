@@ -18,22 +18,27 @@
 #define BUTTON_3_GPIO_PIN 18
 #define BUTTON_4_GPIO_PIN 19
 
-typedef struct ButtonEvent
+typedef struct __attribute__((packed)) ButtonEvent
 {
+  unsigned int magic;
   bool pressed;   // true = pressed, false = released
   uint key;       // 0 to 3
+  char end;       // struct termination marker
 } ButtonEvent;
 
-// TODO: Add an event buffer
 volatile bool new_event = false;
-volatile ButtonEvent event;
+ButtonEvent event = {
+  .magic = 0xcafebabe,
+  .end = '\n',    // the raspberry pi wants a new line or it won't
+                  // send the data in stdio
+};
 
 void button_callback(uint gpio, uint32_t event_mask)
 {
   // Clear the interrupt
   gpio_acknowledge_irq(gpio, event_mask);
 
-  event.pressed = event_mask & GPIO_IRQ_EDGE_RISE;
+  event.pressed = event_mask & GPIO_IRQ_EDGE_FALL;
   event.key     = gpio - BUTTON_1_GPIO_PIN;
   new_event     = true;
   
@@ -43,6 +48,7 @@ void button_callback(uint gpio, uint32_t event_mask)
 void pico_init(void)
 {
   stdio_init_all();
+  setvbuf(stdout, NULL, _IONBF, 0);
 
   gpio_init(LED_PIN);
   gpio_set_dir(LED_PIN, GPIO_OUT);
@@ -61,7 +67,7 @@ void pico_init(void)
     gpio_pull_up(buttons[i]);
     gpio_set_irq_enabled_with_callback(buttons[i],
                                        GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE,
-                                     true, button_callback);      
+                                       true, button_callback);      
   }
   
   return;
@@ -75,7 +81,12 @@ int main(void)
   {
     if (new_event)
     {
-      printf("%d %d\n", event.key, event.pressed);
+      //printf("%d %d\n", event.key, event.pressed);
+      
+      fwrite(&event, sizeof(ButtonEvent), 1, stdout);
+      stdio_flush();
+      fflush(stdout);
+      
       // Use led pin as debug
       gpio_put(LED_PIN, !gpio_get(LED_PIN));
       

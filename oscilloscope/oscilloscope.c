@@ -3,16 +3,13 @@
 // Mail:    giovanni.santini@proton.me
 // Github:  @San7o
 
-//
-// Oscilloscope
-// ============
-//
-
 #include <stdio.h>
+#include <unistd.h>
 #include <pico/stdlib.h>
 #include <hardware/adc.h>
 #include <hardware/dma.h>
 #include <hardware/clocks.h>
+#include <hardware/pwm.h>
 
 #define PIN_ANALOG_IN 26
 
@@ -45,6 +42,17 @@ void pico_init(void)
 {
   stdio_init_all();
 
+  // PWM
+  //
+  // We simulate real analog signal in GPIO0. Connect it to
+  // PIN_ANALOG_IN with a jumper to see the signal.
+  
+  gpio_set_function(0, GPIO_FUNC_PWM);
+  uint slice_num = pwm_gpio_to_slice_num(0);
+  pwm_set_wrap(slice_num, 12500);
+  pwm_set_chan_level(slice_num, PWM_CHAN_A, 6250);
+  pwm_set_enabled(slice_num, true);
+  
   // ADC
   
   adc_init();
@@ -115,18 +123,14 @@ int main(void)
   {
     if (buffer_a_ready)
     {
-      printf("FRAME ");
-      for (int i = 0; i < SAMPLES_BUFF_SIZE; ++i)
-        printf("%d ", samples_buffer_a[i]);
-      printf("\n");
+      fwrite(samples_buffer_a, sizeof(uint16_t), SAMPLES_BUFF_SIZE, stdout);
+      fflush(stdout);
       buffer_a_ready = false;
     }
     if (buffer_b_ready)
     {
-      printf("FRAME ");
-      for (int i = 0; i < SAMPLES_BUFF_SIZE; ++i)
-        printf("%d ", samples_buffer_b[i]);
-      printf("\n");
+      fwrite(samples_buffer_b, sizeof(uint16_t), SAMPLES_BUFF_SIZE, stdout);
+      fflush(stdout);
       buffer_b_ready = false;
     }
   }
