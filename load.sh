@@ -9,7 +9,7 @@ set -e
 #PROGRAM=hello_led_external
 #PROGRAM=pomodoro_led
 #PROGRAM=hello_uart
-PROGRAM=hello_lcd
+#PROGRAM=hello_lcd
 #PROGRAM=hello_ultrasonic_ranging
 #PROGRAM=hello_buzzer
 #PROGRAM=hello_timer
@@ -20,6 +20,7 @@ PROGRAM=hello_lcd
 #PROGRAM=hello_MPU6050
 #PROGRAM=oscilloscope
 #PROGRAM=servo_control
+PROGRAM=buttons_pad
 
 if [ "$PROGRAM" = "" ]; then
     echo "Error, PROGRAM not selected"
