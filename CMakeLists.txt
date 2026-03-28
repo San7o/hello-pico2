@@ -4,6 +4,7 @@ set(PICO_BOARD pico2)
 # initialize pico-sdk from submodule
 # note: this must happen before project()
 include(pico-sdk/pico_sdk_init.cmake)
+include(pico-extras/external/pico_extras_import.cmake)
 
 project(hello_pico)
 
@@ -28,4 +29,5 @@ include(hello_MPU6050/hello_MPU6050.cmake)
 include(oscilloscope/oscilloscope.cmake)
 include(servo_control/servo_control.cmake)
 include(buttons_pad/buttons_pad.cmake)
+include(audio/audio.cmake)
 include(pomodoro_led/pomodoro_led.cmake)

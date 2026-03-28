@@ -4,6 +4,20 @@
 
 Collection of examples on the Raspberry Pi Pico2.
 
+## Info
+
+- Dual Cortex-M33 or Hazard3 processors at 150MHz
+- 520 kB on-chip SRAM
+- 2 on-chip PLLs for internal or external clock generation
+- 2 UARTS
+- 2 I2C controllers
+- 24 PWM channels
+- WSB 1.1 controller
+- 12 PIO state machines
+- 1 HSTX periphera;
+- 2 ADC
+- SPI
+
 ## Usage
 
 To build the program, use:

@@ -20,7 +20,8 @@ set -e
 #PROGRAM=hello_MPU6050
 #PROGRAM=oscilloscope
 #PROGRAM=servo_control
-PROGRAM=buttons_pad
+#PROGRAM=buttons_pad
+PROGRAM=audio
 
 if [ "$PROGRAM" = "" ]; then
     echo "Error, PROGRAM not selected"
