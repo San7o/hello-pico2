@@ -1,0 +1,25 @@
+I/O Interfaces
+==============
+
+There are several standards to communicate from / to a microcontroller.
+In the embedded world, the most popular methods are:
+
+- UART: Universal Asynchronous Receiver / Transmitter is one of the
+  simplest protocols for communication. It allows two parties to
+  communicate via 2 serial lines: RX (receive) and TX (transmit). They
+  both need to agree to a baud rate to receive and transmit data
+  correctly, it is usually set to 115200 (measured in bits per seconds).
+  
+- I2C: It allows communication between multiple masters and multiple
+  slaves. It uses 2 lines, serial data line (SDA) and serial clock
+  line (SCL). The master initiates coommunication and generates the
+  clock.
+
+- SPI: TODO
+
+- USB: TODO
+
+Moderboard for PC have additional interfaces:
+
+- SATA: TODO
+- PCIe: TODO
