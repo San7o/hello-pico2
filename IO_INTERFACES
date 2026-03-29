@@ -5,23 +5,51 @@ There are several standards to communicate from / to a microcontroller.
 In the embedded world, the most popular methods are:
 
 - UART: Universal Asynchronous Receiver / Transmitter is one of the
-  simplest protocols for communication. It allows two parties to
-  communicate via 2 serial lines: RX (receive) and TX (transmit). They
-  both need to agree to a baud rate to receive and transmit data
-  correctly, it is usually set to 115200 (measured in bits per seconds).
+  simplest protocols for communication. It allows two parties to do
+  full-duplex communication via 2 serial lines: RX (receive) and TX
+  (transmit) (other than GND and VCC for ground and power
+  respectively). They both need to agree to a baud rate to receive and
+  transmit data correctly, it is usually set to 115200 (measured in
+  bits per seconds).
   
-- I2C: It allows communication between multiple masters and multiple
-  slaves. It uses 2 lines, serial data line (SDA) and serial clock
-  line (SCL). The master initiates coommunication and generates the
-  clock.
+- I2C: Inter-integrated Circuit. It allows half-duplex communication
+  between multiple masters and multiple slaves. It uses 2 lines,
+  serial data line (SDA) and serial clock line (SCL). The master
+  initiates coommunication and generates the clock.
 
-- I2S: used for sound.
+- I2S: Inter-Integrated Circuit Sound, used for two-channel sound. You
+  often have a buffer that you fill and send to the module. Lines are
+  BCK (bit clock), DIN (data input) amd LCK (left-right clock,
+  selecting the channel).
 
-- SPI: TODO
+- SPI: Master-slave serial synchronous full-duplex communication. It
+  uses 4 lines: SS for slave select, SCLK for serial clock from the
+  master, MOSI (Master Out Slave In) and MISO (Master In Slave Out).
 
 - USB: TODO
 
-Moderboard for PC have additional interfaces:
+PC moderboards have additional interfaces:
 
 - SATA: TODO
 - PCIe: TODO
+
+
+Communication
+-------------
+
+It often happens that an external module supports one or more
+itnerfaces to work with it. The interface is just how do we
+communicate with the piece of hardware, another problem is what to
+communicate. This is fundamentally dependent on each module, but there
+are some common patterns we find
+
+- simple analog signal: sometimes the module will provide an analog
+  signal that we need to convert to a digital value (ADC) and quantize
+  it (clamp it). This happens for example when reading simple sensor
+  data.
+
+- registers: modules often provide registers that we can read and
+  write to. The communication usually starts with specifying the
+  operation we want to do (read or write), then which register, and
+  then we write the data to the register, or read incoming data from
+  the module.

@@ -22,8 +22,21 @@
 //    VCC: 5V
 //    GND
 //
-// We will use the I2S library from pico-extras.
 //
+// We have two DMA buffers, we fill one while we move the other to
+// the PIO. The PIO is a tiny processor that runs a very simple
+// assembly-like script. Its job is to:
+// - Wait for a 32-bit world to arrive from the DMA
+// - Shift those bits out one by one on the DIN pin
+// - Pulse the BCK for every bit
+// - Flip the LCk once all 16 bits of a channel are sent
+//
+// We need to confiture the DMA to read from memory and write to the
+// PIO's FIFO buffer when a DREQ is called, and swap buffers to
+// prevent gaps in the music.
+//
+
+// TODO
 
 #include <stdio.h>
 #include <math.h>
