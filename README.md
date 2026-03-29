@@ -12,7 +12,7 @@ Collection of examples on the Raspberry Pi Pico2.
 - 2 UARTS
 - 2 I2C controllers
 - 24 PWM channels
-- WSB 1.1 controller
+- USB 1.1 controller
 - 12 PIO state machines
 - 1 HSTX periphera;
 - 2 ADC
