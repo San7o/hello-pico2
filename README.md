@@ -49,6 +49,7 @@ the board. Then the full sequence looks like this:
 ## Resources
 
 - [Pi Pico2 Datasheet](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf) (for the GPIO voltage)
+- [RP2350 Datasheet](https://pip-assets.raspberrypi.com/categories/1214-rp2350/documents/RP-008373-DS-2-rp2350-datasheet.pdf?disposition=inline)
 - [Pico SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-c-sdk.pdf)
 - [Pico 2 Examples](https://github.com/raspberrypi/pico-examples)
 - [Kit Guide](https://docs.freenove.com/projects/fnk0058/en/latest/index.html)
