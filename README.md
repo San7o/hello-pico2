@@ -20,6 +20,18 @@ Collection of examples on the Raspberry Pi Pico2.
 
 ## Usage
 
+Download:
+
+```bash
+git clone --recurse-submodules https://github.com/San7o/hello-pico2
+```
+
+or
+
+```
+git submodule update --init
+```
+
 To build the program, use:
 
 ```bash

@@ -4,7 +4,7 @@
 
 set -e
 
-#PROGRAM=hello_led
+PROGRAM=hello_led
 #PROGRAM=hello_usb
 #PROGRAM=hello_led_external
 #PROGRAM=pomodoro_led
@@ -21,7 +21,7 @@ set -e
 #PROGRAM=oscilloscope
 #PROGRAM=servo_control
 #PROGRAM=buttons_pad
-PROGRAM=audio
+#PROGRAM=audio
 
 if [ "$PROGRAM" = "" ]; then
     echo "Error, PROGRAM not selected"
