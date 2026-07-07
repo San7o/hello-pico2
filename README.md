@@ -1,5 +1,3 @@
-# hello-pico2
-
 ![pico-img](./pi-banner.jpg)
 
 Collection of examples on the Raspberry Pi Pico2.
