@@ -4,6 +4,17 @@
 
 Collection of examples on the Raspberry Pi Pico2.
 
+You may be also interested in:
+
+- [hello-stm32-blue-pill](https://github.com/San7o/hello-stm32-blue-pill):
+  example projects for the STM32 "Blue Pill"
+- [hello-esp32](https://github.com/San7o/hello-esp32):  Example projects for the
+  ESP32 (private for now)
+- [hello-milkv-duo-s](https://github.com/San7o/hello-milkv-duo-s): Example
+  projects for the MilkV Duo S (private for now)
+- [rpi3B-os](https://github.com/San7o/rpi3b-os): an operating system for the
+  Rasbperry Pi 3B
+
 ## Info
 
 - Dual Cortex-M33 or Hazard3 processors at 150MHz
@@ -23,7 +34,7 @@ Collection of examples on the Raspberry Pi Pico2.
 Download:
 
 ```bash
-git clone --recurse-submodules https://github.com/San7o/hello-pico2
+git clone --recurse-submodules https://github.com/San7o/hello-pico2.git
 ```
 
 or
