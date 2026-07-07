@@ -5,11 +5,11 @@ Collection of examples on the Raspberry Pi Pico2.
 You may be also interested in:
 
 - [hello-stm32-blue-pill](https://github.com/San7o/hello-stm32-blue-pill):
-  example projects for the STM32 "Blue Pill"
-- [hello-esp32](https://github.com/San7o/hello-esp32):  Example projects for the
-  ESP32 (private for now)
+  example projects on the STM32 "Blue Pill"
+- [hello-esp32](https://github.com/San7o/hello-esp32):  Example projects on the
+  ESP32
 - [hello-milkv-duo-s](https://github.com/San7o/hello-milkv-duo-s): Example
-  projects for the MilkV Duo S (private for now)
+  projects on the MilkV Duo S
 - [rpi3B-os](https://github.com/San7o/rpi3b-os): an operating system for the
   Rasbperry Pi 3B
 
