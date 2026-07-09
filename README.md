@@ -67,6 +67,15 @@ the board. Then the full sequence looks like this:
 3. release the reset button
 4. release the BOOTSEL button
 
+## Debugprobe
+
+You can use the Pico2 as a debug probe for SWD. To do this, you need to flash
+the [debugprobe](https://github.com/raspberrypi/debugprobe) firmware and connect
+the Pico2 to the board you want to debug following the connection from the
+[getting started with
+pico](./datasheets/RP-008276-DS-1-getting-started-with-pico.pdf) document
+appendix A.
+
 ## Resources
 
 - [Pi Pico2 Datasheet](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf) (for the GPIO voltage)
